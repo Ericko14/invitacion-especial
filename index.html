@@ -1,1 +1,1252 @@
 
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Una pregunta para ti ❤️</title>
+
+    <style>
+        /* =====================================================
+           CONFIGURACIÓN GENERAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --rosa: #ff5f8f;
+            --rosa-claro: #ffe7ef;
+            --coral: #ff806f;
+            --vino: #70253f;
+            --texto: #40373d;
+            --gris: #756b72;
+            --blanco: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            color: var(--texto);
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(255, 189, 211, .65),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 90%,
+                    rgba(215, 197, 255, .65),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fff8fb,
+                    #f9f4ff
+                );
+        }
+
+        /* =====================================================
+           FONDO ANIMADO
+        ===================================================== */
+
+        #floating-elements {
+            position: fixed;
+            inset: 0;
+
+            overflow: hidden;
+
+            pointer-events: none;
+
+            z-index: 0;
+        }
+
+        .floating {
+            position: absolute;
+
+            bottom: -50px;
+
+            opacity: 0;
+
+            animation:
+                floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: .55;
+            }
+
+            85% {
+                opacity: .25;
+            }
+
+            100% {
+                transform:
+                    translateY(-115vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+        /* =====================================================
+           CONTENEDOR
+        ===================================================== */
+
+        .page {
+            position: relative;
+            z-index: 2;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 24px 15px;
+        }
+
+        .card {
+            width: min(680px, 100%);
+
+            padding: 42px 32px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, .76);
+
+            border:
+                1px solid rgba(255,255,255,.9);
+
+            border-radius: 32px;
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 25px 80px
+                rgba(91, 57, 78, .15);
+
+            animation:
+                cardIn .9s ease;
+        }
+
+        @keyframes cardIn {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(30px)
+                    scale(.96);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+        /* =====================================================
+           ETIQUETA
+        ===================================================== */
+
+        .tag {
+            display: inline-block;
+
+            margin-bottom: 20px;
+            padding: 8px 16px;
+
+            border-radius: 50px;
+
+            background: var(--rosa-claro);
+
+            color: var(--rosa);
+
+            font-size: .78rem;
+            font-weight: 700;
+
+            letter-spacing: .4px;
+        }
+
+        /* =====================================================
+           TITULO
+        ===================================================== */
+
+        h1 {
+            margin-bottom: 18px;
+
+            color: var(--vino);
+
+            font-size:
+                clamp(2rem, 8vw, 3.2rem);
+
+            line-height: 1.12;
+        }
+
+        .intro {
+            max-width: 540px;
+
+            margin:
+                0 auto 25px;
+
+            color: var(--gris);
+
+            font-size: 1.04rem;
+
+            line-height: 1.7;
+        }
+
+        /* =====================================================
+           ILUSTRACIÓN
+        ===================================================== */
+
+        .cute-animation {
+            width: 180px;
+            height: 155px;
+
+            margin:
+                0 auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffe0eb,
+                    #eee5ff
+                );
+
+            box-shadow:
+                inset 0 0 30px
+                rgba(255,255,255,.8),
+
+                0 15px 35px
+                rgba(100,65,90,.1);
+
+            animation:
+                cuteFloat 3.2s
+                ease-in-out infinite;
+        }
+
+        .cute-animation span {
+            font-size: 75px;
+
+            filter:
+                drop-shadow(
+                    0 8px 8px
+                    rgba(80,50,70,.1)
+                );
+        }
+
+        @keyframes cuteFloat {
+
+            0%,100% {
+                transform:
+                    translateY(0)
+                    rotate(-2deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-10px)
+                    rotate(2deg);
+            }
+        }
+
+        .hint {
+            margin-bottom: 28px;
+
+            color: #a0959d;
+
+            font-size: .78rem;
+        }
+
+        /* =====================================================
+           PREGUNTA
+        ===================================================== */
+
+        .question {
+            padding-top: 5px;
+        }
+
+        .question h2 {
+            margin-bottom: 10px;
+
+            color: var(--vino);
+
+            font-size:
+                clamp(1.55rem, 6vw, 2.2rem);
+
+            line-height: 1.25;
+        }
+
+        .question-description {
+            margin-bottom: 20px;
+
+            color: var(--gris);
+
+            line-height: 1.65;
+        }
+
+        /* =====================================================
+           CALENDARIO
+        ===================================================== */
+
+        .date-box {
+            width: min(290px, 100%);
+
+            margin:
+                0 auto 27px;
+        }
+
+        .date-box label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #6d6068;
+
+            font-size: .88rem;
+            font-weight: 600;
+        }
+
+        input[type="date"] {
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border:
+                1px solid #efd1dc;
+
+            border-radius: 16px;
+
+            outline: none;
+
+            background: #fff;
+
+            color: #51464d;
+
+            font-family: inherit;
+            font-size: 1rem;
+
+            transition: .25s ease;
+        }
+
+        input[type="date"]:focus {
+            border-color: var(--rosa);
+
+            box-shadow:
+                0 0 0 4px
+                rgba(255,95,143,.12);
+        }
+
+        /* =====================================================
+           BOTONES
+        ===================================================== */
+
+        .buttons {
+            position: relative;
+
+            min-height: 70px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        button {
+            border: 0;
+
+            font-family: inherit;
+
+            font-size: 1rem;
+            font-weight: 700;
+
+            border-radius: 50px;
+
+            cursor: pointer;
+
+            -webkit-tap-highlight-color:
+                transparent;
+        }
+
+        #yesBtn {
+            padding:
+                16px 34px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--rosa),
+                    var(--coral)
+                );
+
+            box-shadow:
+                0 12px 28px
+                rgba(255,95,143,.3);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+        #yesBtn:hover {
+            transform:
+                translateY(-4px)
+                scale(1.04);
+
+            box-shadow:
+                0 17px 35px
+                rgba(255,95,143,.4);
+        }
+
+        #yesBtn:active {
+            transform: scale(.96);
+        }
+
+        #noBtn {
+            position: relative;
+
+            padding:
+                14px 28px;
+
+            color: #85777f;
+
+            background: white;
+
+            border:
+                1px solid #eadde2;
+
+            box-shadow:
+                0 7px 18px
+                rgba(80,55,70,.08);
+
+            transition:
+                left .25s ease,
+                top .25s ease,
+                transform .2s ease;
+        }
+
+        /* =====================================================
+           PANTALLA FINAL
+        ===================================================== */
+
+        #success {
+            display: none;
+
+            animation:
+                successIn .8s ease;
+        }
+
+        @keyframes successIn {
+
+            from {
+                opacity: 0;
+                transform:
+                    scale(.85)
+                    translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+        }
+
+        .big-heart {
+            margin-bottom: 15px;
+
+            font-size: 75px;
+
+            animation:
+                heartbeat 1.2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.15);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.1);
+            }
+        }
+
+        #success h2 {
+            margin-bottom: 15px;
+
+            color: var(--vino);
+
+            font-size:
+                clamp(2rem, 8vw, 2.8rem);
+        }
+
+        #success p {
+            color: var(--gris);
+
+            line-height: 1.7;
+
+            font-size: 1.05rem;
+        }
+
+        .chosen-date {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding:
+                11px 18px;
+
+            border-radius: 50px;
+
+            background: var(--rosa-claro);
+
+            color: #d93668;
+
+            font-weight: 700;
+
+            font-size: .9rem;
+        }
+
+        .final-note {
+            margin-top: 22px;
+
+            color: #9b8e96;
+
+            font-size: .8rem;
+        }
+
+        /* =====================================================
+           CONFETI
+        ===================================================== */
+
+        .confetti {
+            position: fixed;
+
+            top: -30px;
+
+            z-index: 100;
+
+            pointer-events: none;
+
+            animation:
+                confettiFall linear forwards;
+        }
+
+        @keyframes confettiFall {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+
+                opacity: 0;
+            }
+        }
+
+        /* =====================================================
+           MÓVILES
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 15px;
+            }
+
+            .card {
+                padding:
+                    34px 20px;
+
+                border-radius: 27px;
+            }
+
+            .cute-animation {
+                width: 155px;
+                height: 135px;
+            }
+
+            .cute-animation span {
+                font-size: 63px;
+            }
+
+            .buttons {
+                gap: 10px;
+            }
+
+            #yesBtn {
+                padding:
+                    15px 28px;
+            }
+
+            #noBtn {
+                padding:
+                    13px 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         FONDO
+    ====================================================== -->
+
+    <div id="floating-elements"></div>
+
+
+    <!-- =====================================================
+         PÁGINA
+    ====================================================== -->
+
+    <main class="page">
+
+        <section class="card">
+
+
+            <!-- =================================================
+                 INVITACIÓN
+            ================================================== -->
+
+            <div id="invitation">
+
+                <div class="tag">
+                    ✨ Una pregunta importante...
+                </div>
+
+
+                <h1>
+                    Hola,
+                    <span id="girlName">
+                        [Su Nombre]
+                    </span>
+                    ❤️
+                </h1>
+
+
+                <p class="intro">
+
+                    Chica que disfruta de los conciertos,
+                    las buenas canciones y las conversaciones
+                    que se alargan más de lo previsto...
+
+                    tengo una pequeña pregunta para ti. 👀
+
+                </p>
+
+
+                <!-- =================================================
+                     ESPACIO PARA GIF
+                ================================================== -->
+
+                <div class="cute-animation">
+
+                    <!--
+                        Puedes reemplazar este emoji por un GIF.
+
+                        Ejemplo:
+
+                        <img src="ositos.gif"
+                             alt="Ositos tiernos">
+                    -->
+
+                    <span>
+                        🧸💕
+                    </span>
+
+                </div>
+
+
+                <p class="hint">
+                    Aquí puedes poner nuestro GIF favorito 🥹
+                </p>
+
+
+                <!-- =================================================
+                     PREGUNTA
+                ================================================== -->
+
+                <div class="question">
+
+                    <h2>
+                        ¿Te gustaría salir conmigo? ✨
+                    </h2>
+
+
+                    <p class="question-description">
+
+                        La propuesta es sencilla:
+
+                        ☕ tomar un café,
+                        🎶 escuchar buena música,
+                        💬 conversar un montón
+
+                        y pasar un bonito momento juntos.
+
+                    </p>
+
+
+                    <!-- =================================================
+                         CALENDARIO
+                    ================================================== -->
+
+                    <div class="date-box">
+
+                        <label for="date">
+                            📅 Escoge el día
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                        >
+
+                    </div>
+
+
+                    <!-- =================================================
+                         BOTONES
+                    ================================================== -->
+
+                    <div class="buttons">
+
+                        <button id="yesBtn">
+                            Sí ❤️
+                        </button>
+
+                        <button id="noBtn">
+                            No 🙈
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RESPUESTA POSITIVA
+            ================================================== -->
+
+            <div id="success">
+
+                <div class="big-heart">
+                    💖
+                </div>
+
+
+                <h2>
+                    ¡Siii! 🥳
+                </h2>
+
+
+                <p>
+
+                    ¡Sabía que dirías que sí! ❤️
+
+                    <br><br>
+
+                    Entonces ya tenemos una cita pendiente.
+
+                    <br>
+
+                    Te escribo para coordinar
+                    los detalles. ✨
+
+                </p>
+
+
+                <div
+                    id="chosenDate"
+                    class="chosen-date"
+                ></div>
+
+
+                <div class="final-note">
+                    Prometo que será un buen plan. 🌷
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* =====================================================
+           PERSONALIZACIÓN
+        ===================================================== */
+
+        /*
+            ✏️ CAMBIA AQUÍ EL NOMBRE
+        */
+
+        const nombre =
+            "[Su Nombre]";
+
+
+        /*
+            Ejemplo:
+
+            const nombre = "Daniela";
+        */
+
+        document.getElementById(
+            "girlName"
+        ).textContent = nombre;
+
+
+        /* =====================================================
+           ELEMENTOS DEL DOM
+        ===================================================== */
+
+        const floating =
+            document.getElementById(
+                "floating-elements"
+            );
+
+        const dateInput =
+            document.getElementById(
+                "date"
+            );
+
+        const yesBtn =
+            document.getElementById(
+                "yesBtn"
+            );
+
+        const noBtn =
+            document.getElementById(
+                "noBtn"
+            );
+
+        const invitation =
+            document.getElementById(
+                "invitation"
+            );
+
+        const success =
+            document.getElementById(
+                "success"
+            );
+
+
+        /* =====================================================
+           CORAZONES Y ESTRELLAS
+        ===================================================== */
+
+        const symbols = [
+            "❤️",
+            "💕",
+            "💗",
+            "💖",
+            "✨",
+            "🌸"
+        ];
+
+
+        function createFloatingElement() {
+
+            const element =
+                document.createElement("div");
+
+            element.className =
+                "floating";
+
+            element.textContent =
+                symbols[
+                    Math.floor(
+                        Math.random() *
+                        symbols.length
+                    )
+                ];
+
+            element.style.left =
+                Math.random() * 100 + "vw";
+
+            element.style.fontSize =
+                12 +
+                Math.random() * 18 +
+                "px";
+
+            element.style.animationDuration =
+                7 +
+                Math.random() * 8 +
+                "s";
+
+            floating.appendChild(
+                element
+            );
+
+
+            setTimeout(
+                () => element.remove(),
+                16000
+            );
+        }
+
+
+        setInterval(
+            createFloatingElement,
+            550
+        );
+
+
+        /* =====================================================
+           FECHA MÍNIMA
+        ===================================================== */
+
+        const today =
+            new Date();
+
+        const yyyy =
+            today.getFullYear();
+
+        const mm =
+            String(
+                today.getMonth() + 1
+            ).padStart(2, "0");
+
+        const dd =
+            String(
+                today.getDate()
+            ).padStart(2, "0");
+
+
+        dateInput.min =
+            `${yyyy}-${mm}-${dd}`;
+
+
+        /* =====================================================
+           BOTÓN "NO"
+        ===================================================== */
+
+        let attempts = 0;
+
+
+        const noMessages = [
+            "No 🙈",
+            "¿Segura? 👀",
+            "Piénsalo 😌",
+            "Intenta otra vez 😂",
+            "Ese botón no funciona 😏",
+            "Mejor el Sí ❤️",
+            "¡Casi! 😂",
+            "No te escaparás 😌"
+        ];
+
+
+        function moveNoButton() {
+
+            attempts++;
+
+
+            const buttonWidth =
+                noBtn.offsetWidth;
+
+            const buttonHeight =
+                noBtn.offsetHeight;
+
+
+            const maxX =
+                window.innerWidth -
+                buttonWidth -
+                15;
+
+
+            const maxY =
+                window.innerHeight -
+                buttonHeight -
+                15;
+
+
+            const x =
+                Math.max(
+                    10,
+                    Math.random() * maxX
+                );
+
+
+            const y =
+                Math.max(
+                    10,
+                    Math.random() * maxY
+                );
+
+
+            noBtn.style.position =
+                "fixed";
+
+
+            noBtn.style.left =
+                x + "px";
+
+
+            noBtn.style.top =
+                y + "px";
+
+
+            noBtn.style.zIndex =
+                "50";
+
+
+            noBtn.textContent =
+                noMessages[
+                    Math.min(
+                        attempts,
+                        noMessages.length - 1
+                    )
+                ];
+        }
+
+
+        /*
+            Computador
+        */
+
+        noBtn.addEventListener(
+            "mouseenter",
+            moveNoButton
+        );
+
+
+        /*
+            Celular
+        */
+
+        noBtn.addEventListener(
+            "touchstart",
+            function(event) {
+
+                event.preventDefault();
+
+                moveNoButton();
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+        /*
+            Por si consigue hacer click 😂
+        */
+
+        noBtn.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                moveNoButton();
+
+            }
+        );
+
+
+        /* =====================================================
+           BOTÓN SÍ
+        ===================================================== */
+
+        yesBtn.addEventListener(
+            "click",
+            function() {
+
+                let dateText =
+                    "📅 Ahora solo falta escoger el día ❤️";
+
+
+                if (dateInput.value) {
+
+                    const selected =
+                        new Date(
+                            dateInput.value +
+                            "T00:00:00"
+                        );
+
+
+                    dateText =
+                        "📅 " +
+                        selected.toLocaleDateString(
+                            "es-EC",
+                            {
+                                weekday: "long",
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric"
+                            }
+                        );
+
+                }
+
+
+                document.getElementById(
+                    "chosenDate"
+                ).textContent =
+                    dateText;
+
+
+                invitation.style.display =
+                    "none";
+
+
+                success.style.display =
+                    "block";
+
+
+                createConfetti();
+
+            }
+        );
+
+
+        /* =====================================================
+           CONFETI
+        ===================================================== */
+
+        function createConfetti() {
+
+            const pieces = [
+                "💖",
+                "💕",
+                "❤️",
+                "✨",
+                "🌸",
+                "🎉"
+            ];
+
+
+            for (
+                let i = 0;
+                i < 100;
+                i++
+            ) {
+
+                const piece =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                piece.className =
+                    "confetti";
+
+
+                piece.textContent =
+                    pieces[
+                        Math.floor(
+                            Math.random() *
+                            pieces.length
+                        )
+                    ];
+
+
+                piece.style.left =
+                    Math.random() *
+                    100 +
+                    "vw";
+
+
+                piece.style.fontSize =
+                    10 +
+                    Math.random() *
+                    17 +
+                    "px";
+
+
+                piece.style.animationDuration =
+                    2 +
+                    Math.random() *
+                    2 +
+                    "s";
+
+
+                piece.style.animationDelay =
+                    Math.random() *
+                    .7 +
+                    "s";
+
+
+                document.body.appendChild(
+                    piece
+                );
+
+
+                setTimeout(
+                    () => piece.remove(),
+                    4500
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
+```
